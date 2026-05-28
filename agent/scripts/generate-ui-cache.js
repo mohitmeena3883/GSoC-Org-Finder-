@@ -1,7 +1,7 @@
 const fs = require('fs');
-
+const path = require('path');
 const issuesData = JSON.parse(
-  fs.readFileSync('./data/issues.json', 'utf8')
+  fs.readFileSync(path.resolve(__dirname, '../../data/issues.json'), 'utf8')
 );
 
 const issues = issuesData.issues || [];
@@ -25,12 +25,12 @@ const summary = {
   topOrganizations: [...orgs].slice(0, 10)
 };
 
-if (!fs.existsSync('./data')) {
-  fs.mkdirSync('./data', { recursive: true });
+if (!fs.existsSync(path.resolve(__dirname, '../../data'))) {
+  fs.mkdirSync(path.resolve(__dirname, '../../data'), { recursive: true });
 }
 
 fs.writeFileSync(
-  './data/ui-summary.json',
+  path.resolve(__dirname, '../../data/ui-summary.json'),
   JSON.stringify(summary, null, 2)
 );
 

@@ -204,15 +204,15 @@ async function fetchIssues() {
   // ─────────────────────────────────────────────
   // Ensure data directory exists
   // ─────────────────────────────────────────────
-  if (!fs.existsSync('./data')) {
-    fs.mkdirSync('./data', { recursive: true });
+  if (!fs.existsSync(path.resolve(__dirname, '../../data'))) {
+    fs.mkdirSync(path.resolve(__dirname, '../../data'), { recursive: true });
   }
 
   // ─────────────────────────────────────────────
   // Save dataset
   // ─────────────────────────────────────────────
   fs.writeFileSync(
-    './data/issues.json',
+    path.resolve(__dirname, '../../data/issues.json'),
     JSON.stringify(
       {
         updated_at: new Date().toISOString(),
